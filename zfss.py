@@ -59,6 +59,39 @@ def FUNC(lll):
 
 
 FUNC(list_of_name)
+
+z=[]
+
+#search_from = browser.find_element_by_tag_name('html')
+
+button_len = browser.find_elements_by_class_name('b-button__root')
+counter_=int(button_len[-2].text) #количество страниц
+continue_link = browser.find_element_by_partial_link_text('Вперед →')
+
+for j in range(2):  #counter_):
+
+        #browser_wait = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'b-offer__price-old')))
+        time.sleep(random.randint(3, 5))
+        search_from = browser.find_element_by_tag_name('html')
+        productimg = browser.find_elements_by_class_name('b-image__img')#.get_attribute('src')
+        product_img = productimg[::2]
+        magazine_img = productimg[1::2]
+        card_product_date = browser.find_elements_by_class_name('b-offer__dates')
+        card_product_name = browser.find_elements_by_class_name('b-offer__description')
+        card_product_price_new = browser.find_elements_by_class_name('b-offer__price-new')
+        
+        for i in range(len(card_product_date)):
+                page_list_product = [card_product_date[i].text, card_product_name[i].text,\
+                                     card_product_price_new[i].text, product_img[i].get_attribute('src'),\
+                                     magazine_img[i].get_attribute('alt')]
+                z.append(page_list_product)
+        
+        try:
+                continue_link.click()
+                
+        except Exception:
+                pass
+
 #for i in list_of_name:
  #       continue_link = browser.find_element_by_partial_link_text('{}'.format(i))
   #      continue_link.click()
@@ -73,28 +106,7 @@ FUNC(list_of_name)
            #         button_link = browser.find_element_by_link_text('{}'.format(r))
             #        button_link.click()
              #       time.sleep(5)
-#for j in range(counter_):
 
-        #browser_wait = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'b-offer__price-old')))
-#        time.sleep(random.randint(3, 5))
- #       search_from = browser.find_element_by_tag_name('html')
-  #      productimg = browser.find_elements_by_class_name('b-image__img')#.get_attribute('src')
-   #     product_img = productimg[::2]
-    #    card_product_date = browser.find_elements_by_class_name('b-offer__dates')
-     #   card_product_name = browser.find_elements_by_class_name('b-offer__description')
-      #  card_product_price_new = browser.find_elements_by_class_name('b-offer__price-new')
-       # card_product_price_old = browser.find_elements_by_class_name('b-offer__price-old')
-        #for i in range(len(card_product_date)):
-         #       page_list_product = [card_product_date[i].text, card_product_name[i].text,\
-          #                           card_product_price_new[i].text, product_img[i].get_attribute('src')]
-           #     z.append(page_list_product)
-        #
-      #  try:
-       #         continue_link.click()
-        #        
-     #   except Exception:
-        #        pass
-                
 
 #with open('product.csv','w', encoding ='utf16', newline='') as file:
  #       writer = csv.writer(file, delimiter=';')
